@@ -1,0 +1,37 @@
+// src/App.tsx
+import React, { useState } from 'react';
+import { ethers } from 'ethers';
+
+const MyContractAddress = '0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e0x9e701A56AA42cD89D4bD386c229Ed1A8e83E6257'; // Ganti dengan alamat smart contract Anda
+
+function App() {
+  const [myNumber, setMyNumber] = useState<number>(0);
+  const [newNumber, setNewNumber] = useState<string>('');
+
+  const loadNumber = async () => {
+    const provider = new ethers.providers.JsonRpcProvider();
+    const contract = new ethers.Contract(MyContractAddress, ['function myNumber() view returns (uint256)'], provider);
+    const currentNumber = await contract.myNumber();
+    setMyNumber(currentNumber.toNumber());
+  };
+
+  const updateNumber = async () => {
+    if (!newNumber) return;
+    const wallet = new ethers.Wallet('0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e'); // Ganti dengan kunci pribadi Anda
+    const contract = new ethers.Contract(MyContractAddress, ['function setNumber(uint256)'], wallet);
+    await contract.setNumber(parseInt(newNumber));
+    await loadNumber();
+    setNewNumber('');
+  };
+
+  return (
+    <div>
+      <h1>Simple DApp</h1>
+      <p>Current Number: {myNumber}</p>
+      <input type="number" value={newNumber} onChange={(e) => setNewNumber(e.target.value)} />
+      <button onClick={updateNumber}>Update Number</button>
+    </div>
+  );
+}
+
+export default App;

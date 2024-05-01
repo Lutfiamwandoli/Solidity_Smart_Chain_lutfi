@@ -1,0 +1,36 @@
+{
+  "name": "hardhat-project",
+  "version": "1.0.0",
+  "description": "A simple decentralized application (dApp) using Hardhat and React",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "dapp",
+    "blockchain",
+    "ethereum",
+    "hardhat",
+    "typescript",
+    "react"
+  ],
+  "author": "Lutfi",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.3",
+    "typescript": "^5.4.5",
+    "@types/node": "^17.0.4",
+    "@types/react-scripts": "^5.0.0",
+    "react-scripts": "10.5.0"
+  },
+  "dependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
